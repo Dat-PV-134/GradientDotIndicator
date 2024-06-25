@@ -1,4 +1,4 @@
-## Preview
+![preview_2](https://github.com/Dat-PV-134/GradientDotIndicator/assets/94840545/db0348b2-45c0-4a99-b543-fedda5158965)## Preview
 
 ![alt text](https://github.com/Dat-PV-134/GradientDotIndicator/blob/main/preview_2.jpg)
 
@@ -23,3 +23,33 @@ Build.gradle (Module app):
 ```sh
     implementation("com.github.Dat-PV-134:GradientDotIndicator:1.0.1")
 ```
+
+## Usage:
+
+```sh
+    <com.rekoj134.gradientdotindicator.indicator.GradientDotIndicator
+        android:id="@+id/dotsIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dotsColor="#ACACAC"
+        app:dotsCornerRadius="7dp"
+        app:dotsSize="7dp"
+        app:dotsSpacing="3dp"
+        app:dotsWidthFactor="3"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:progressMode="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:selectedDotColorStart="#45BA7B"
+        app:selectedDotColorEnd="#48B7DA" />
+```
+
+```sh
+    dotIndicator.attachTo(viewPager)
+```
+
+        
+
+
