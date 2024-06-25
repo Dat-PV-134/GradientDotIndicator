@@ -5,15 +5,30 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
-    <TextView
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpTest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.rekoj134.gradientdotindicator.indicator.GradientDotIndicator
+        android:id="@+id/dotsIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:dotsColor="#ACACAC"
+        app:dotsCornerRadius="7dp"
+        app:dotsSize="7dp"
+        app:dotsSpacing="3dp"
+        app:dotsWidthFactor="3"
+        android:layout_marginStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:progressMode="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:selectedDotColorStart="#45BA7B"
+        app:selectedDotColorEnd="#48B7DA" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
