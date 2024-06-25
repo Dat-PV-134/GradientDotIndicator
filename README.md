@@ -1,5 +1,7 @@
 ## Preview
+
 ![alt text](https://github.com/Dat-PV-134GradientDotIndicator/blob/main/preview_1.jpg)
+
 ![alt text](https://github.com/Dat-PV-134GradientDotIndicator/blob/main/preview_2.jpg)
 
 ## Implementation:
