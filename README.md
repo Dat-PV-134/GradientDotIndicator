@@ -1,4 +1,4 @@
-![preview_2](https://github.com/Dat-PV-134/GradientDotIndicator/assets/94840545/db0348b2-45c0-4a99-b543-fedda5158965)## Preview
+## Preview
 
 ![alt text](https://github.com/Dat-PV-134/GradientDotIndicator/blob/main/preview_2.jpg)
 
