@@ -56,8 +56,14 @@ Circle type:
 ```
 
 Custom solid color of each dot:
+- Number of color must same as number of page in view pager
 ```sh
-    app:isTypeCircleDot="true"
+     dotIndicator.setListColor(listOf(
+            Color.parseColor("#F31414"),
+            Color.parseColor("#16DC96"),
+            Color.parseColor("#6A12C3")
+            )
+        )
 ```
 
         
