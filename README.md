@@ -50,6 +50,16 @@ Build.gradle (Module app):
     dotIndicator.attachTo(viewPager)
 ```
 
+Circle type: 
+```sh
+    app:isTypeCircleDot="true"
+```
+
+Custom solid color of each dot:
+```sh
+    app:isTypeCircleDot="true"
+```
+
         
 
 
