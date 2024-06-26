@@ -1,5 +1,6 @@
 package com.rekoj134.gradientdotindicator
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -19,5 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         viewPager.adapter = sliderAdapter
         dotIndicator.attachTo(viewPager)
+        dotIndicator.setListColor(listOf(
+            Color.parseColor("#F31414"),
+            Color.parseColor("#16DC96"),
+            Color.parseColor("#6A12C3")
+        )
+        )
     }
 }

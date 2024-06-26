@@ -22,9 +22,9 @@ internal fun View.setWidth(width: Int) {
     }
 }
 
-internal fun View.setHeight(width: Int) {
+internal fun View.setHeight(height: Int) {
     layoutParams.apply {
-        this.width = width
+        this.height = height
         requestLayout()
     }
 }

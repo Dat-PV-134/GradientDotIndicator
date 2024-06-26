@@ -45,5 +45,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation("com.github.Dat-PV-134:GradientDotIndicator:1.0.1")
+    implementation(project(":GradientDotIndicator"))
+//    implementation("com.github.Dat-PV-134:GradientDotIndicator:1.0.2")
 }
