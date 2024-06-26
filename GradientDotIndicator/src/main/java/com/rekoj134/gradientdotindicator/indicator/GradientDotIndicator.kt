@@ -3,9 +3,11 @@ package com.rekoj134.gradientdotindicator.indicator
 import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -39,6 +41,19 @@ class GradientDotIndicator @JvmOverloads constructor(
             refreshDotsColors()
         }
 
+    var isTypeCircleDot: Boolean = false
+        set(value) {
+            field = value
+            refreshDotsColors()
+        }
+
+    private val listColor = ArrayList<Int>()
+    fun setListColor(listColor: List<Int>) {
+        this.listColor.clear()
+        this.listColor.addAll(listColor)
+        refreshDotsColors()
+    }
+
     private val argbEvaluator = ArgbEvaluator()
 
     init {
@@ -49,6 +64,7 @@ class GradientDotIndicator @JvmOverloads constructor(
     private fun init(attrs: AttributeSet?) {
         linearLayout = LinearLayout(context)
         linearLayout.orientation = LinearLayout.HORIZONTAL
+        linearLayout.gravity = Gravity.CENTER_VERTICAL
         addView(linearLayout, WRAP_CONTENT, WRAP_CONTENT)
 
         dotsWidthFactor = DEFAULT_WIDTH_FACTOR
@@ -58,6 +74,8 @@ class GradientDotIndicator @JvmOverloads constructor(
 
             selectedDotColorStart = a.getColor(R.styleable.DotsIndicator_selectedDotColorStart, DEFAULT_POINT_COLOR)
             selectedDotColorEnd = a.getColor(R.styleable.DotsIndicator_selectedDotColorEnd, DEFAULT_POINT_COLOR)
+
+            isTypeCircleDot = a.getBoolean(R.styleable.DotsIndicator_isTypeCircleDot, false)
 
             dotsWidthFactor = a.getFloat(R.styleable.DotsIndicator_dotsWidthFactor, 2.5f)
             if (dotsWidthFactor < 1) {
@@ -94,6 +112,7 @@ class GradientDotIndicator @JvmOverloads constructor(
         params.setMargins(dotsSpacing.toInt(), 0, dotsSpacing.toInt(), 0)
         val background = DotsGradientDrawable()
         background.cornerRadius = dotsCornerRadius
+        if (isTypeCircleDot) background.cornerRadius = 99f
         background.orientation = GradientDrawable.Orientation.LEFT_RIGHT
 
         if (pager!!.currentItem == index) {
@@ -135,6 +154,7 @@ class GradientDotIndicator @JvmOverloads constructor(
                 val selectedDotWidth =
                     (dotsSize + dotsSize * (dotsWidthFactor - 1) * (1 - positionOffset)).toInt()
                 selectedDot.setWidth(selectedDotWidth)
+                if (isTypeCircleDot) selectedDot.setHeight(selectedDotWidth)
 
                 if (dots.isInBounds(nextPosition)) {
                     val nextDot = dots[nextPosition]
@@ -142,6 +162,7 @@ class GradientDotIndicator @JvmOverloads constructor(
                     val nextDotWidth =
                         (dotsSize + dotsSize * (dotsWidthFactor - 1) * positionOffset).toInt()
                     nextDot.setWidth(nextDotWidth)
+                    if (isTypeCircleDot) nextDot.setHeight(nextDotWidth)
 
                     val selectedDotBackground = selectedDot.background as DotsGradientDrawable
                     val nextDotBackground = nextDot.background as DotsGradientDrawable
@@ -149,26 +170,48 @@ class GradientDotIndicator @JvmOverloads constructor(
                     selectedDotBackground.orientation = GradientDrawable.Orientation.LEFT_RIGHT
                     nextDotBackground.orientation = GradientDrawable.Orientation.LEFT_RIGHT
 
-                    if (selectedDotColorStart != dotsColor) {
-                        val selectedColor = argbEvaluator.evaluate(
-                            positionOffset, selectedDotColorStart,
-                            dotsColor
-                        ) as Int
+                    if (listColor.isEmpty()) {
+                        if (selectedDotColorStart != dotsColor) {
+                            val selectedColor = argbEvaluator.evaluate(
+                                positionOffset, selectedDotColorStart,
+                                dotsColor
+                            ) as Int
 
-                        val nextColor = argbEvaluator.evaluate(
-                            positionOffset, dotsColor,
-                            selectedDotColorStart
-                        ) as Int
+                            val nextColor = argbEvaluator.evaluate(
+                                positionOffset, dotsColor,
+                                selectedDotColorStart
+                            ) as Int
 
-                        val nextColorFinal = if (nextColor == dotsColor) intArrayOf(dotsColor, dotsColor) else intArrayOf(selectedDotColorStart, selectedDotColorEnd)
-                        val selectedColorFinal = if (selectedColor == dotsColor) intArrayOf(dotsColor, dotsColor) else intArrayOf(selectedDotColorStart, selectedDotColorEnd)
+                            val nextColorFinal = if (nextColor == dotsColor) intArrayOf(dotsColor, dotsColor) else intArrayOf(selectedDotColorStart, selectedDotColorEnd)
+                            val selectedColorFinal = if (selectedColor == dotsColor) intArrayOf(dotsColor, dotsColor) else intArrayOf(selectedDotColorStart, selectedDotColorEnd)
 
-                        nextDotBackground.colors = nextColorFinal
+                            nextDotBackground.colors = nextColorFinal
 
-                        if (progressMode && selectedPosition == pager!!.currentItem) {
-                            selectedDotBackground.colors = intArrayOf(selectedDotColorStart, selectedDotColorEnd)
-                        } else {
-                            selectedDotBackground.colors = selectedColorFinal
+                            if (progressMode && selectedPosition == pager!!.currentItem) {
+                                selectedDotBackground.colors = intArrayOf(selectedDotColorStart, selectedDotColorEnd)
+                            } else {
+                                selectedDotBackground.colors = selectedColorFinal
+                            }
+                        }
+                    } else {
+                        if (selectedDotColorStart != dotsColor) {
+                            val selectedColor = argbEvaluator.evaluate(
+                                positionOffset, listColor[selectedPosition],
+                                dotsColor
+                            ) as Int
+
+                            val nextColor = argbEvaluator.evaluate(
+                                positionOffset, dotsColor,
+                                listColor[nextPosition]
+                            ) as Int
+
+                            nextDotBackground.color = ColorStateList.valueOf(nextColor)
+
+                            if (progressMode && selectedPosition == pager!!.currentItem) {
+                                selectedDotBackground.color = ColorStateList.valueOf(selectedColor)
+                            } else {
+                                selectedDotBackground.color = ColorStateList.valueOf(selectedColor)
+                            }
                         }
                     }
                 }
@@ -193,7 +236,11 @@ class GradientDotIndicator @JvmOverloads constructor(
 
         background?.let {
             if (index == pager!!.currentItem) {
-                background.colors = intArrayOf(selectedDotColorStart, selectedDotColorEnd)
+                if (listColor.isEmpty()) {
+                    background.colors = intArrayOf(selectedDotColorStart, selectedDotColorEnd)
+                } else {
+                    background.color = ColorStateList.valueOf(listColor[index])
+                }
             } else {
                 background.setColor(dotsColor)
             }

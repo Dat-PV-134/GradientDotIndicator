@@ -34,7 +34,8 @@ abstract class BaseDotsIndicator @JvmOverloads constructor(
         @StyleableRes val dotsSizeId: Int,
         @StyleableRes val dotsSpacingId: Int,
         @StyleableRes val dotsCornerRadiusId: Int,
-        @StyleableRes val dotsClickableId: Int
+        @StyleableRes val dotsClickableId: Int,
+        @StyleableRes val isTypeCircleDot: Int
     ) {
         DEFAULT(
             16f,
@@ -44,7 +45,8 @@ abstract class BaseDotsIndicator @JvmOverloads constructor(
             R.styleable.DotsIndicator_dotsSize,
             R.styleable.DotsIndicator_dotsSpacing,
             R.styleable.DotsIndicator_dotsCornerRadius,
-            R.styleable.DotsIndicator_dotsClickable
+            R.styleable.DotsIndicator_dotsClickable,
+            R.styleable.DotsIndicator_isTypeCircleDot
         ),
         SPRING(
             16f,
@@ -54,7 +56,8 @@ abstract class BaseDotsIndicator @JvmOverloads constructor(
             R.styleable.DotsIndicator_dotsSize,
             R.styleable.DotsIndicator_dotsSpacing,
             R.styleable.DotsIndicator_dotsCornerRadius,
-            R.styleable.DotsIndicator_dotsClickable
+            R.styleable.DotsIndicator_dotsClickable,
+            R.styleable.DotsIndicator_isTypeCircleDot
         ),
         WORM(
             16f,
@@ -64,7 +67,8 @@ abstract class BaseDotsIndicator @JvmOverloads constructor(
             R.styleable.DotsIndicator_dotsSize,
             R.styleable.DotsIndicator_dotsSpacing,
             R.styleable.DotsIndicator_dotsCornerRadius,
-            R.styleable.DotsIndicator_dotsClickable
+            R.styleable.DotsIndicator_dotsClickable,
+            R.styleable.DotsIndicator_isTypeCircleDot
         )
     }
 

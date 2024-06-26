@@ -22,6 +22,13 @@ internal fun View.setWidth(width: Int) {
     }
 }
 
+internal fun View.setHeight(width: Int) {
+    layoutParams.apply {
+        this.width = width
+        requestLayout()
+    }
+}
+
 internal fun <T> ArrayList<T>.isInBounds(index: Int) = index in 0 until size
 
 internal fun Context.getThemePrimaryColor(): Int {

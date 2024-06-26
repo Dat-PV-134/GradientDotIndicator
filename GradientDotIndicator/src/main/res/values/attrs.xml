@@ -10,6 +10,7 @@
         <attr name="dotsCornerRadius" />
         <attr name="progressMode" />
         <attr name="dotsClickable" />
+        <attr name="isTypeCircleDot" />
         <attr name="dotsElevation" format="dimension" />
     </declare-styleable>
 
@@ -26,4 +27,5 @@
     <attr name="dampingRatio" format="float" />
     <attr name="progressMode" format="boolean" />
     <attr name="dotsClickable" format="boolean" />
+    <attr name="isTypeCircleDot" format="boolean" />
 </resources>
