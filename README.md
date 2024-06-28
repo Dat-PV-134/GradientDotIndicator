@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 Build.gradle (Module app):
 
 ```sh
-    implementation("com.github.Dat-PV-134:GradientDotIndicator:1.0.1")
+    implementation("com.github.Dat-PV-134:GradientDotIndicator:lastest_version")
 ```
 
 ## Usage:
