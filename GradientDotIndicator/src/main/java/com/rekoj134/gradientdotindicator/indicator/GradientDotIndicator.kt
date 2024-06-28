@@ -205,7 +205,7 @@ class GradientDotIndicator @JvmOverloads constructor(
                                 listColor[nextPosition]
                             ) as Int
 
-                            nextDotBackground.color = ColorStateList.valueOf(nextColor)
+                            nextDotBackground.colors = intArrayOf(nextColor, nextColor)
 
                             if (progressMode && selectedPosition == pager!!.currentItem) {
                                 selectedDotBackground.colors = intArrayOf(selectedColor, selectedColor)
@@ -239,7 +239,7 @@ class GradientDotIndicator @JvmOverloads constructor(
                 if (listColor.isEmpty()) {
                     background.colors = intArrayOf(selectedDotColorStart, selectedDotColorEnd)
                 } else {
-                    background.color = ColorStateList.valueOf(listColor[index])
+                    background.colors = intArrayOf(listColor[index], listColor[index])
                 }
             } else {
                 background.colors = intArrayOf(dotsColor, dotsColor)
