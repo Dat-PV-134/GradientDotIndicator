@@ -118,7 +118,7 @@ class GradientDotIndicator @JvmOverloads constructor(
         if (pager!!.currentItem == index) {
             background.colors = intArrayOf(selectedDotColorStart, selectedDotColorEnd)
         } else {
-            background.setColor(dotsColor)
+            background.colors = intArrayOf(dotsColor, dotsColor)
         }
 
         imageView.background = background
@@ -187,8 +187,8 @@ class GradientDotIndicator @JvmOverloads constructor(
 
                             nextDotBackground.colors = nextColorFinal
 
-                            if (progressMode && selectedPosition == pager!!.currentItem) {
-                                selectedDotBackground.colors = intArrayOf(selectedDotColorStart, selectedDotColorEnd)
+                            if (selectedPosition == pager!!.currentItem) {
+                                selectedDotBackground.colors = selectedColorFinal
                             } else {
                                 selectedDotBackground.colors = selectedColorFinal
                             }
@@ -208,9 +208,9 @@ class GradientDotIndicator @JvmOverloads constructor(
                             nextDotBackground.color = ColorStateList.valueOf(nextColor)
 
                             if (progressMode && selectedPosition == pager!!.currentItem) {
-                                selectedDotBackground.color = ColorStateList.valueOf(selectedColor)
+                                selectedDotBackground.colors = intArrayOf(selectedColor, selectedColor)
                             } else {
-                                selectedDotBackground.color = ColorStateList.valueOf(selectedColor)
+                                selectedDotBackground.colors = intArrayOf(selectedColor, selectedColor)
                             }
                         }
                     }
@@ -242,7 +242,7 @@ class GradientDotIndicator @JvmOverloads constructor(
                     background.color = ColorStateList.valueOf(listColor[index])
                 }
             } else {
-                background.setColor(dotsColor)
+                background.colors = intArrayOf(dotsColor, dotsColor)
             }
         }
 
